@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cooking Helper</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Cooking Helper</h1>
+
+        <p class="subtitle">
+            Find budget-friendly recipes based on the ingredients you already have.
+        </p>
+
+        <form action="/results" method="POST" class="input-card">
+            <label for="ingredients">Ingredients you have</label>
+            <input
+                type="text"
+                id="ingredients"
+                name="ingredients"
+                placeholder="Enter ingredients you already have, e.g., egg, rice, tomato"
+                required
+            >
+
+            <label for="budget">Budget for missing ingredients</label>
+            <input
+                type="number"
+                id="budget"
+                name="budget"
+                placeholder="5"
+                step="0.01"
+                required
+            >
+
+            <label for="meal_type">Meal type</label>
+            <select id="meal_type" name="meal_type">
+                <option value="No limitation">No limitation</option>
+                <option value="Vegetarian">Vegetarian</option>
+                <option value="Chicken">Chicken</option>
+                <option value="Beef">Beef</option>
+                <option value="Seafood">Seafood</option>
+            </select>
+
+            <button type="submit">Get Recommendations</button>
+        </form>
+    </div>
+</body>
+</html>

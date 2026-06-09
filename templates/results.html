@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cooking Helper Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Recommended Recipes</h1>
+
+        <div class="summary-card">
+            <p><strong>Ingredients you have:</strong> {{ user_ingredients | join(", ") }}</p>
+            <p><strong>Budget:</strong> ${{ "%.2f"|format(budget) }}</p>
+            <p><strong>Meal type:</strong> {{ meal_type }}</p>
+        </div>
+
+        {% if recommendations %}
+            {% for recipe in recommendations %}
+                <div class="recipe-card">
+                    <img src="{{ recipe.image }}" alt="{{ recipe.name }}" class="recipe-image">
+
+                    <div class="recipe-info">
+                        <h2>{{ recipe.name }}</h2>
+
+                        <p><strong>Category:</strong> {{ recipe.category }}</p>
+
+                        <p>
+                            <strong>Missing ingredients:</strong>
+                            {% if recipe.missing_ingredients %}
+                                {{ recipe.missing_ingredients | join(", ") }}
+                            {% else %}
+                                None
+                            {% endif %}
+                        </p>
+
+                        <p><strong>Estimated extra cost:</strong> ${{ "%.2f"|format(recipe.missing_cost) }}</p>
+
+                        <p><strong>Practicality score:</strong> {{ recipe.score }}/10</p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="summary-card">
+                <p>No recommendations found. Try different ingredients or choose "No limitation" for meal type.</p>
+            </div>
+        {% endif %}
+
+        <a href="/" class="back-link">Search again</a>
+    </div>
+</body>
+</html>

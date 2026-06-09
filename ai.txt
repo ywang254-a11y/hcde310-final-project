@@ -1,0 +1,3 @@
+I used ChatGPT to generate the starter ingredient_prices.csv file. 
+I also used ChatGPT to help create the initial index.html page based on the rough interface shown in the screenshot of my project proposal. 
+Later, I used that structure to write and revise the results.html page so the recommendations could be displayed through a Flask template.
